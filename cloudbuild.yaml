@@ -1,0 +1,33 @@
+
+
+steps:
+  #First Clone from Google Cloud Source Repository 
+  # - name: 'gcr.io/cloud-builders/git'
+  #   args: ['clone','https://${_PAT_GIT}@github.com/${_GIT_USER}/${_REPO_NAME}']
+
+# First Clone from Google Cloud Source Repository 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: 
+      - compute
+      - ssh
+      - '${_SSH_KEY}'
+      - --project
+      - '${_PROJECT}'
+      - --zone
+      - '${_ZONE}'
+      - --
+      - pwd &&
+#       - mkdir google-repo &&
+      - cd google-repo &&
+#       - git init &&
+#       - git remote add origin https://'${_PAT_GIT}'@github.com/'${_GIT_USER}'/'${_REPO_NAME}' &&
+      - sudo git pull origin '${_BRANCH}' &&
+#      - composer install &&
+      - systemctl restart httpd &&
+      - systemctl status httpd
+   
+
+
+
+options:
+    substitution_option: 'ALLOW_LOOSE'
