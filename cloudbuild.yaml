@@ -5,7 +5,9 @@ steps:
   # - name: 'gcr.io/cloud-builders/git'
   #   args: ['clone','https://${_PAT_GIT}@github.com/${_GIT_USER}/${_REPO_NAME}']
 
-# First Clone from Google Cloud Source Repository 
+# First Clone from Github Source Repository 
+# It creates a container within which installs the bare minimum to connect with your server using gcloud commands and 
+# executes the arguments.
   - name: 'gcr.io/cloud-builders/gcloud'
     args: 
       - compute
